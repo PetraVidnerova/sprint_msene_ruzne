@@ -97,7 +97,7 @@ def test_hod_kostkou(result):
     assert odpoved == result
 
 
-@pytest.mark.repeat(1000)
+@pytest.mark.repeat(10)
 def test_teplota_v_intervalu():
     dolni_mez = random.randrange(-60, 61)
     horni_mez = random.randrange(dolni_mez, 61)
@@ -122,4 +122,10 @@ def test_teplota_je_vyssi():
 
 
 def test_doporuc_obleceni():
-    doporuc_obleceni(random.randrange(-30, 36))
+    vytvoreny_retezec = io.StringIO()
+    flexmock(builtins, print=partial(print, file=vytvoreny_retezec))
+
+    teplota = random.randrange(-15, 36)
+    ret = doporuc_obleceni(teplota)
+    assert vytvoreny_retezec.getvalue() != "", f"{teplota} je běžná teplota, funkce by měla něco vypsat."
+    assert ret == None, "Funkce nemá nic vracet."

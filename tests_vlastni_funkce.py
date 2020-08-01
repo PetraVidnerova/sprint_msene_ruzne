@@ -56,8 +56,8 @@ def test_nakresli_obrazec():
     flexmock(builtins, print=partial(print, file=vytvoreny_retezec))
     nakresli_obrazec()
     radky = list(vytvoreny_retezec.getvalue().split("\n"))
-    for r in range(0, N):
-        assert radky[0] == "X", "Řádek nesmí začínat mezerou."
+    for radek in radky[:N]:
+        assert radek[0] == "X", "Řádek nesmí začínat mezerou."
     assert len(radky) > 0
     assert radky[0].rstrip() in kraje, f"'{radky[0]}' by mělo obsahovat 6 X"
     assert radky[N-1].rstrip() in kraje, f"'{radky[N-1]}' by mělo obsahovat 6 X"
@@ -70,19 +70,19 @@ def test_nakresli_obrazec():
 
 
 # 5
-# @pytest.mark.parametrize('result', [1, 2, 5, 6, 8, 9])
-# def test_hod_kostkou(result):
+@pytest.mark.parametrize('result', [1, 2, 5, 6, 8, 9])
+def test_hod_kostkou(result):
 
-#     def my_random(*args, **kwargs):
-#         my_random.pocet_hodu -= 1
-#         if my_random.pocet_hodu == 0:
-#             return 6
-#         else:
-#             return random.choice([])
-#     my_random.pocet_hodu = result
+    def my_random(*args, **kwargs):
+        my_random.pocet_hodu -= 1
+        if my_random.pocet_hodu == 0:
+            return 6
+        else:
+            return random.choice([0, 1, 2, 3, 4, 5])
+    my_random.pocet_hodu = result
 
-#     flexmock(random, randrange=partial(my_random, name="randrange"))
-#     flexmock(random, randint=partial(my_random, name="randint"))
+    flexmock(random, randrange=partial(my_random, name="randrange"))
+    flexmock(random, randint=partial(my_random, name="randint"))
 
-#     odpoved = hod_kostkou()
-#     assert odpoved == result
+    odpoved = hod_kostkou()
+    assert odpoved == result

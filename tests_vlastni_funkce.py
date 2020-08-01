@@ -57,7 +57,7 @@ def test_nakresli_obrazec():
     nakresli_obrazec()
     radky = list(vytvoreny_retezec.getvalue().split("\n"))
     for radek in radky[:N]:
-        assert radek[0] == "X", "Řádek nesmí začínat mezerou."
+        assert radek[0] == "X", "Řádek musí začínat X."
     assert len(radky) > 0
     assert radky[0].rstrip() in kraje, f"'{radky[0]}' by mělo obsahovat 6 X"
     assert radky[N-1].rstrip() in kraje, f"'{radky[N-1]}' by mělo obsahovat 6 X"
@@ -70,7 +70,7 @@ def test_nakresli_obrazec():
 
 
 # 5
-@pytest.mark.parametrize('result', [1, 2, 5, 6, 8, 9])
+@pytest.mark.parametrize('result', [1, 2, 5, 6, 8, 29])
 def test_hod_kostkou(result):
 
     def my_random(*args, **kwargs):

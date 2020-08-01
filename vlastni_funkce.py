@@ -42,8 +42,13 @@ def hod_kostkou():
     pocet_pokusu = 0
     while True:
         pocet_pokusu += 1
-        hod = random.randrange(1, 7)
+        hod = random.randint(1, 6)
+        #        hod = random.randrange(1, 7)
+        #        hod = random.randrange(start=1, end=7)
         print("Hozeno ", hod)
         if hod == 6:
             break
     return pocet_pokusu
+
+
+# 6

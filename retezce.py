@@ -24,3 +24,19 @@ def ano_nebo_ne(otazka):
             return False
         else:
             print('Nerozumím! Odpověz "ano" nebo "ne".')
+
+
+def vyhodnot(pole):
+    if "xxx" in pole:
+        return "x"
+
+    if "ooo" in pole:
+        return "o"
+
+    if "-" not in pole:
+        return "!"
+
+    return "-
+
+
+# dalsi testy uz existujou

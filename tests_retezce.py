@@ -73,3 +73,14 @@ def test_ano_nebo_ne_nevim(vstup, vystup):
 
     flexmock(builtins, input=partial(faked_input, answers=vstup))
     assert ano_nebo_ne("otazka") == vystup
+
+
+@pytest.mark.parametrize(["vstup", "vystup"],
+                         [("xxxooxoxo", "x"),
+                          ("xxooxxooxooo", "o"),
+                          ("xoxoxoxoxoxxooxxoo", "!"),
+                          ("x-xoxoxoxoxoxxooxxoo", "-")]
+
+                         )
+def test_vyhodnot(vstup, vystup):
+    assert vyhodnot(vstup) == vystup

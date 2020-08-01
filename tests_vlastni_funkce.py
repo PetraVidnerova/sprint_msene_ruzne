@@ -81,8 +81,8 @@ def test_hod_kostkou(result):
                 args) == 2 and args[0] == 1 and args[1] == 7),  "Chyba v parametrech funkce randrange"
 
         elif kwargs["name"] == "randint":
-            assert len(args) == 2, "Chyba v parametrech funkce randrange"
-            assert args[0] == 1 and args[1] == 6, "Chyba v parametrech funkce randrange"
+            assert len(args) == 2, "Chyba v parametrech funkce randint"
+            assert args[0] == 1 and args[1] == 6, "Chyba v parametrech funkce randint"
         my_random.pocet_hodu -= 1
         if my_random.pocet_hodu == 0:
             return 6
@@ -95,3 +95,27 @@ def test_hod_kostkou(result):
 
     odpoved = hod_kostkou()
     assert odpoved == result
+
+
+@pytest.mark.repeat(10)
+def test_teplota_v_intervalu():
+    dolni_mez = random.randrange(-60, 61)
+    horni_mez = random.randrange(dolni_mez, 61)
+    teplota = random.randrange(dolni_mez, horni_mez+1)
+    assert teplota_v_intervalu(teplota, dolni_mez, horni_mez) == True
+
+
+@pytest.mark.repeat(10)
+def test_teplota_je_nizsi():
+    dolni_mez = random.randrange(-60, 61)
+    horni_mez = random.randrange(dolni_mez, 61)
+    teplota = random.randrange(-61, dolni_mez)
+    assert teplota_v_intervalu(teplota, dolni_mez, horni_mez) == False
+
+
+@pytest.mark.repeat(10)
+def test_teplota_je_vyssi():
+    dolni_mez = random.randrange(-60, 61)
+    horni_mez = random.randrange(dolni_mez, 61)
+    teplota = random.randrange(horni_mez, 63)
+    assert teplota_v_intervalu(teplota, dolni_mez, horni_mez) == False

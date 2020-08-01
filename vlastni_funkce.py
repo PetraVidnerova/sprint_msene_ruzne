@@ -52,3 +52,5 @@ def hod_kostkou():
 
 
 # 6
+def teplota_v_intervalu(teplota, dolni_mez, horni_mez):
+    return dolni_mez <= teplota <= horni_mez

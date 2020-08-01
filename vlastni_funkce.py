@@ -1,4 +1,7 @@
 # 0
+import random
+
+
 def pocet_vterin(minuty, vteriny):
     return 60 * minuty + vteriny
 
@@ -32,3 +35,15 @@ def nakresli_obrazec():
             else:
                 print(" ", end="")
         print()
+
+
+# 5
+def hod_kostkou():
+    pocet_pokusu = 0
+    while True:
+        pocet_pokusu += 1
+        hod = random.randrange(1, 7)
+        print("Hozeno ", hod)
+        if hod == 6:
+            break
+    return pocet_pokusu

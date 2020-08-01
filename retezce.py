@@ -36,7 +36,7 @@ def vyhodnot(pole):
     if "-" not in pole:
         return "!"
 
-    return "-
+    return "-"
 
 
 # dalsi testy uz existujou

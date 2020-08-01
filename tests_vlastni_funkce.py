@@ -97,7 +97,7 @@ def test_hod_kostkou(result):
     assert odpoved == result
 
 
-@pytest.mark.repeat(10)
+@pytest.mark.repeat(1000)
 def test_teplota_v_intervalu():
     dolni_mez = random.randrange(-60, 61)
     horni_mez = random.randrange(dolni_mez, 61)
@@ -117,5 +117,9 @@ def test_teplota_je_nizsi():
 def test_teplota_je_vyssi():
     dolni_mez = random.randrange(-60, 61)
     horni_mez = random.randrange(dolni_mez, 61)
-    teplota = random.randrange(horni_mez, 63)
+    teplota = random.randrange(horni_mez+1, 63)
     assert teplota_v_intervalu(teplota, dolni_mez, horni_mez) == False
+
+
+def test_doporuc_obleceni():
+    doporuc_obleceni(random.randrange(-30, 36))

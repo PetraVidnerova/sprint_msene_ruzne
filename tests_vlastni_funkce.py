@@ -76,9 +76,10 @@ def test_hod_kostkou(result):
     def my_random(*args, **kwargs):
         if kwargs["name"] == "randrange":
             assert len(args) == 2 or (
-                "start" in kwargs and "end" in kwargs), "Chyba v parametrech funkce randrange"
-            assert len(args) == 0 or (len(
+                "start" in kwargs and "stop" in kwargs), "Chyba v parametrech funkce randrange"
+            assert (len(args) == 0 and kwargs["start"] == 1 and kwargs["stop"] == 7) or (len(
                 args) == 2 and args[0] == 1 and args[1] == 7),  "Chyba v parametrech funkce randrange"
+
         elif kwargs["name"] == "randint":
             assert len(args) == 2, "Chyba v parametrech funkce randrange"
             assert args[0] == 1 and args[1] == 6, "Chyba v parametrech funkce randrange"
